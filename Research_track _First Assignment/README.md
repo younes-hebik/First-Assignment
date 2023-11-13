@@ -97,5 +97,11 @@ Set angular velocity for the robot.
                      return -1, -1, -1
                  else:
                      return dist, rot_y, code_of_token
+
+### 'golden_grabber(rot_y, dist, code_of_token):'
+    Grab the golden token using orientation and distance.
+
+### 'go_to_golden_and_release(rot_y, dist, code_of_token):'
+           Move to the nearest golden box and release the token.
  
 
