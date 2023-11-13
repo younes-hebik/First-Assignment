@@ -102,6 +102,18 @@ Set angular velocity for the robot.
     Grab the golden token using orientation and distance.
 
 ### 'go_to_golden_and_release(rot_y, dist, code_of_token):'
-           Move to the nearest golden box and release the token.
- 
+           Move to the collected golden boxes and release the token.
 
+
+### 'Main Algorithm'
+     In the main() function:
+     Search for the first golden token and grab it using golden_grabber.
+     Release the grabbed token, turn, and drive to prepare for the next stage.
+     Continue the loop until there are 6 golden tokens in goldenList.
+     In each iteration:
+     Find the closest free golden token using find_golden_token.
+     Grab the golden token using golden_grabber.
+     Find the collected golden boxes and release the token using go_to_golden_and_release.
+     Complete the mission by driving backward and turning.
+      
+     
