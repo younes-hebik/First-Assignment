@@ -106,6 +106,7 @@ Set angular velocity for the robot.
 
 
 ### 'Main Algorithm'
+<pre>
      In the main() function:
      Search for the first golden token and grab it using golden_grabber.
      Release the grabbed token, turn, and drive to prepare for the next stage.
@@ -115,5 +116,6 @@ Set angular velocity for the robot.
      Grab the golden token using golden_grabber.
      Find the collected golden boxes and release the token using go_to_golden_and_release.
      Complete the mission by driving backward and turning.
+</pre>
       
      
