@@ -32,3 +32,20 @@ def find_golden_token():
         return -1, -1, -1
     else:
         return dist, rot_y, code_of_token
+### find_golden_token1():
+```python
+Find the closest golden token from the list of grabbed tokens.
+# Function to find the closest golden token in the list of grabbed tokens
+def find_golden_token1():
+    dist = 100
+    rot_y = -1
+    code_of_token = -1
+    for token in R.see():
+        if token.dist < dist and token.info.code in goldenList:
+            dist = token.dist
+            rot_y = token.rot_y
+            code_of_token = token.info.code
+    if dist == 100:
+        return -1, -1, -1
+    else:
+        return dist, rot_y, code_of_token
