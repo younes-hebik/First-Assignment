@@ -1,0 +1,77 @@
+# Pseudo-code for Golden Token Grabber
+
+# Initialize robot and thresholds
+initialize_robot()
+a_th = 1.5  # Threshold for controlling linear distance
+d_th = 0.4  # Threshold for controlling orientation
+
+# Lists to track grabbed golden tokens
+goldenList = []
+
+# Define robot movement functions
+def drive(speed, seconds):
+    # Code to set linear velocity for the robot
+    ...
+
+def turn(speed, seconds):
+    # Code to set angular velocity for the robot
+    ...
+
+# Function to find the closest golden token
+def find_golden_token():
+    dist = 100
+    for token in robot.see():
+        if token.dist < dist and token.info.code not in goldenList:
+            dist = token.dist
+            rot_y = token.rot_y
+            code_of_token = token.info.code
+            print(token.info.code)
+    
+    if dist == 100:
+        return -1, -1, -1
+    else:
+        return dist, rot_y, code_of_token
+
+# Function to grab a golden token
+def golden_grabber(rot_y, dist, code_of_token):
+    # Code to grab the golden token
+    ...
+
+# Function to release a golden token near the nearest golden box
+def go_to_golden_and_release(rot_y, dist, code_of_token):
+    # Code to move to the nearest golden box and release the token
+    ...
+
+# Main program
+def main():
+    # Loop until at least one golden token is grabbed
+    while len(goldenList) == 0:
+        dist, rot_y, code_of_token = find_golden_token()
+        if dist == -1:
+            turn(10, 0.1)
+            continue
+        
+        golden_grabber(rot_y, dist, code_of_token)
+        print(goldenList[0])
+        release_token()
+        turn(20, 3)
+        drive(10, 3)
+
+    # Loop until 6 golden tokens are grabbed and released
+    while len(goldenList) < 6 and len(goldenList) != 0:
+        dist, rot_y, code_of_token = find_golden_token()
+        if dist == -1:
+            turn(10, 0.1)
+            continue
+        
+        golden_grabber(rot_y, dist, code_of_token)
+        
+        dist1, rot_y1, code_of_token1 = find_golden_token1()
+        go_to_golden_and_release(rot_y1, dist1, code_of_token1)
+
+    drive(-30, 2)
+    turn(20, 0.5)
+    print("Mission completed")
+
+# Call the main function to start the program
+main()
