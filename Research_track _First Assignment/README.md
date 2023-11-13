@@ -80,7 +80,7 @@ Set angular velocity for the robot.
                 return dist, rot_y, code_of_token
 
                 
-### 'find_golden_token1():'
+### `find_golden_token1():`
  
            ```python
              # Function to find the closest golden token in the list of grabbed tokens
