@@ -23,7 +23,7 @@ To release the token we use the method:
 <br>a_th : The threshold for controlling the linear distance. </br>
 d_th : The threshold for controlling the orientation.
 
-<br> silverList = [] : List contains the codes of silver boxes.</br>
+
 goldenList = [] : List contains the codes of golden boxes.	
 
 The code is composed of different functions that I created:
