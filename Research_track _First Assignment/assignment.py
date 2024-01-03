@@ -10,7 +10,7 @@ a_th = 1.5 # The threshold for controlling the linear distance
 d_th = 0.4 # The threshold for controlling the orientation
 
 
-#silverList = [] # a list to count the number of silver tokens grabbed and save their codes.
+
 goldenList = [] # a list to count the number of golden tokens and save their codes.
 goldenList2=[]
 
@@ -44,7 +44,7 @@ def turn(speed, seconds):
 def find_golden_token():
 
 	dist=100
-	for token in R.see() : # if the robot sees the token, it checks if it's golden and it has no silver box paired with it (not in list of golden boxes)
+	for token in R.see() : # if the robot sees the token, it checks if it's golden  and it is not in list of gathered golden boxes
 		if token.dist < dist and token.info.code not in goldenList:
 			dist=token.dist
 			rot_y=token.rot_y
@@ -62,7 +62,7 @@ def find_golden_token():
 def find_golden_token1():
 
 	dist=100
-	for token in R.see() : # if the robot sees the token, it checks if it's golden and it has no silver box paired with it (not in list of golden boxes)
+	for token in R.see() : 
 	        
 	        print("number is :",len(goldenList))
 	      
@@ -89,18 +89,18 @@ def find_golden_token1():
 def golden_grabber(rot_y,dist,code_of_token):
 
     """This function works using the distance and orientation returned by the 
-    function 'find_silver_token' and it tends to update the distatnce and the orientation of the 
-    silver token each time using the functions turn and drive to reach the box. and also it is used to grab
-    the token and append the list of silver tokens"""
+    function 'find_golden_token' and it tends to update the distatnce and the orientation of the 
+    golden token each time using the functions turn and drive to reach the box. and also it is used to grab
+    the token and append the list of golden tokens"""
 
     while(dist<0):
-       #This loop works if the silver boxes are too far from the robot, so the loop makes the robot turn untill it finds a token.
+       #This loop works if the golden boxes are too far from the robot, so the loop makes the robot turn untill it finds a token.
         turn(-5,10)
         dist, rot_y, code_of_token = find_golden_token()
-    while (rot_y >= a_th or rot_y<=-a_th) : #This loop tries to find the exact orientation of the silver box
+    while (rot_y >= a_th or rot_y<=-a_th) : #This loop tries to find the exact orientation of the golden box
         turn(sign(rot_y-a_th) * 10,0.001) #I used the sign to make the robot turn with the right orientation
         dist, rot_y,code_of_token = find_golden_token()
-    while (dist >= d_th) : #This loop drives the robot to the golden token.
+    while (dist >= d_th) : #This loop drives the robot to another golden token.
         drive(30,0.01)
         dist, rot_y, code_of_token = find_golden_token()
     #goldenList.append(code_of_token)
@@ -113,8 +113,7 @@ def golden_grabber(rot_y,dist,code_of_token):
 
 
 def go_to_golden_and_release(rot_y,dist,code_of_token):
-    """This function works with the same principle of the function silver grabber, except 
-    that it search for the nearest golden box and release the silver box near it """
+    
     while(dist<0):
         turn(-5,0.01)
         dist, rot_y, code_of_token = find_golden_token1()
@@ -134,7 +133,7 @@ def main():
 
     while (len(goldenList)==0):
       
-        """Let's start our task by finding the silver box using the following function"""
+        """Let's start our task by finding the golden box using the following function"""
         dist, rot_y, code_of_token = find_golden_token()
         """This if statement to make the robot turn until it found a golden box"""
         if dist==-1:
@@ -156,7 +155,7 @@ def main():
 
         
     while (len(goldenList)<6 and len(goldenList )!=0):
-        """Let's start our task by finding the silver box using the following function"""
+        """Let's start our task by finding the last golden  box added using the following function"""
         print("test3")
         print(goldenList[0])
         dist, rot_y, code_of_token = find_golden_token()
